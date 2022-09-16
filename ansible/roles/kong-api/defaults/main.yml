@@ -87,6 +87,9 @@ hub_graph_service_prefix: /connections
 workflow_handler_service_prefix: /workflow
 player_prefix: /player
 registry_service_prefix: /rc
+forms_service_prefix: /forms
+profanity_moderator_admin_prefix: /moderatoradmin
+vega_admin_prefix: /vegaadmin
 
 # Service URLs
 knowledge_mw_service_url: "http://knowledge-mw-service:5000"
@@ -116,6 +119,12 @@ discussions_mw_url: "http://discussionsmw-service:3002"
 nodebb_url: "http://nodebb-service:4567/discussions"
 analytics_url: "http://pm-analytics-service:8091"
 registry_service_url: "http://registry-service:8081"
+forms_service_url: "http://form-service:8099"
+profanity_moderator_admin_service: "http://profanity-moderator-admin-service:4000"
+vega_router_service_url: "http://vega-router-service"
+vega_console_service_url: "http://vega-console-service"
+
+
 
 premium_consumer_rate_limits:
   - api: createContent
@@ -706,7 +715,7 @@ kong_apis:
       config.limit_by: credential
     - name: request-size-limiting
       config.allowed_payload_size: "{{ large_request_size_limit }}"
-
+      
   - name: createForm
     uris: "{{ data_service_prefix }}/v1/form/create"
     upstream_url: "{{ player_service_url }}/plugin/v1/form/create"
@@ -8137,6 +8146,78 @@ kong_apis:
     - name: request-size-limiting
       config.allowed_payload_size: "{{ small_request_size_limit }}"
 
+  - name: profanityModerationPersistModeratedText
+    uris: "{{ profanity_moderator_admin_prefix }}/feedback/persist/text/moderated"
+    upstream_url: "{{ profanity_moderator_admin_service }}/feedback/persist/text/moderated"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+          - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: profanityModerationFetchText
+    uris: "{{ profanity_moderator_admin_prefix }}/feedback/text/fetch"
+    upstream_url: "{{ profanity_moderator_admin_service }}/feedback/text/fetch"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+          - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: profanityModerationTypeText
+    uris: "{{ profanity_moderator_admin_prefix }}/profanity/type/text"
+    upstream_url: "{{ profanity_moderator_admin_service }}/profanity/type/text"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+          - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: profanityModerationFeedbackFlags
+    uris: "{{ profanity_moderator_admin_prefix }}/feedback/flag/values"
+    upstream_url: "{{ profanity_moderator_admin_service }}/feedback/flag/values"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+          - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"      
+
   - name: assessmentSubmitV3
     uris: "/v3/user/assessment/submit"
     upstream_url: "{{ sb_cb_ext_service_url }}/v3/user/assessment/submit"
@@ -8668,6 +8749,24 @@ kong_apis:
       - name: request-transformer
         config.remove.headers: Authorization
         
+  - name: updateUsersFirstLoginTime
+    uris: "{{ user_service_prefix }}/v1/updateLogin"
+    upstream_url: "{{ sb_cb_ext_service_url }}/user/v1/updateLogin"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataCreate'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ medium_request_size_limit }}"
+      
   - name: getAllDeptDetails
     uris: "{{ user_service_prefix }}/registration/v1/getDeptDetails"
     upstream_url: "{{ sb_cb_ext_service_url }}/user/registration/v1/getDeptDetails"
@@ -8868,6 +8967,114 @@ kong_apis:
     - name: request-size-limiting
       config.allowed_payload_size: "{{ small_request_size_limit }}"
 
+  - name: createForm
+    uris: "{{ forms_service_prefix }}/createForm"
+    upstream_url: "{{ forms_service_url }}/forms/createForm"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+     
+  - name: getFormById
+    uris: "{{ forms_service_prefix }}/getFormById"
+    upstream_url: "{{ forms_service_url }}/forms/getFormById"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: getAllForms
+    uris: "{{ forms_service_prefix }}/getAllForms"
+    upstream_url: "{{ forms_service_url }}/forms/getAllForms"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: saveFormSubmit
+    uris: "{{ forms_service_prefix }}/v1/saveFormSubmit"
+    upstream_url: "{{ forms_service_url }}/forms/v1/saveFormSubmit"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: tagFormToCourse
+    uris: "{{ forms_service_prefix }}/tagFormToCourse"
+    upstream_url: "{{ forms_service_url }}/forms/tagFormToCourse"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: untagFormToCourse
+    uris: "{{ forms_service_prefix }}/untagFormToCourse"
+    upstream_url: "{{ forms_service_url }}/forms/untagFormToCourse"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+  
   - name: getExploreCourseDetail
     uris: "{{ course_service_prefix }}/v1/explore"
     upstream_url: "{{ sb_cb_ext_service_url }}/course/v1/explore"
@@ -8878,6 +9085,24 @@ kong_apis:
     - name: rate-limiting
       config.policy: local
       config.hour: "{{ large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getAllApplications
+    uris: "{{ forms_service_prefix }}/getAllApplications"
+    upstream_url: "{{ forms_service_url }}/forms/getAllApplications"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ medium_rate_limit_per_hour }}"
       config.limit_by: credential
     - name: request-size-limiting
       config.allowed_payload_size: "{{ small_request_size_limit }}"
@@ -8895,7 +9120,7 @@ kong_apis:
       config.limit_by: credential
     - name: request-size-limiting
       config.allowed_payload_size: "{{ small_request_size_limit }}"
-
+  
   - name: searchUserPrivate
     uris: "{{ learner_private_route_prefix }}/user/v1/search"
     upstream_url: "{{ learning_service_url }}/private/user/v1/search"
@@ -8913,4 +9138,76 @@ kong_apis:
       config.limit_by: credential
     - name: request-size-limiting
       config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: vegaConsole
+    uris: "{{ vega_admin_prefix }}/console"
+    upstream_url: "{{ vega_console_service_url }}"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ small_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+      
+  - name: vegaRouter
+    uris: "{{ vega_admin_prefix }}/router"
+    upstream_url: "{{ vega_router_service_url }}"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+        - 'dataAccess'
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ small_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
 
+  - name: ssoUserV2CreateExt
+    uris: "{{ user_service_prefix }}/v1/ext/signup"
+    upstream_url: "{{ sb_cb_ext_service_url }}/user/v1/ext/signup"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'anonymousUserCreate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: userBulkUpload
+    uris: "{{ user_service_prefix }}/v1/bulkupload"
+    upstream_url: "{{ sb_cb_ext_service_url }}/user/v1/bulkupload"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'userCreate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+        
