@@ -89,6 +89,7 @@ player_prefix: /player
 registry_service_prefix: /rc
 forms_service_prefix: /forms
 profanity_moderator_admin_prefix: /moderatoradmin
+master_data_service_prefix: /masterData
 
 # Service URLs
 knowledge_mw_service_url: "http://knowledge-mw-service:5000"
@@ -8788,7 +8789,7 @@ kong_apis:
       
   - name: getUserPositionList
     uris: "{{ user_service_prefix }}/v1/positions"
-    upstream_url: "{{ sb_cb_ext_service_url }}/v1/listPositions"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/positions"
     strip_uri: true
     plugins:
     - name: jwt
@@ -9205,4 +9206,203 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ large_request_size_limit }}"
+
+  - name: getMasterLanguageList
+    uris: "{{ master_data_service_prefix }}/v1/languages"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getLanguages"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getMasterNationalityList
+    uris: "{{ master_data_service_prefix }}/v1/nationalities"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getNationalities"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getIndustryList
+    uris: "{{ master_data_service_prefix }}/v1/industries"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getIndustries"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getGraduationList
+    uris: "{{ master_data_service_prefix }}/v1/graduations"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getGraduations"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getPostGraduationList
+    uris: "{{ master_data_service_prefix }}/v1/postGraduations"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getPostGraduations"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getMinistryList
+    uris: "{{ master_data_service_prefix }}/v1/ministries"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getMinistries"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getCadreList
+    uris: "{{ master_data_service_prefix }}/v1/cadre"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getCadre"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getServiceList
+    uris: "{{ master_data_service_prefix }}/v1/service"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getService"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getDesignationList
+    uris: "{{ master_data_service_prefix }}/v1/designations"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getDesignation"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getProfilePageMetaData
+    uris: "{{ master_data_service_prefix }}/v1/profilePageMetaData"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/getProfilePageMetaData"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: masterDataUpsert
+    uris: "{{ master_data_service_prefix }}/v1/upsert"
+    upstream_url: "{{ sb_cb_ext_service_url }}/masterData/v1/upsert"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ small_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
         
