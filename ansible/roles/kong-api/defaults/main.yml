@@ -12915,7 +12915,7 @@ kong_apis:
 
   - name: retireCareersEvent
     uris: "{{ careers_prefix }}/v4/retire"
-    upstream_url: "{{ content_service_url }}/event/v4/retire"
+    upstream_url: "{{ content_service_url }}/private/event/v4/retire"
     strip_uri: true
     plugins:
       - name: jwt
