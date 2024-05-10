@@ -7576,7 +7576,7 @@ kong_apis:
 
 
   - name: workflowGetUserWFApplicationFields
-    uris: "{{ workflow_handler_service_prefix }}/getUserWFApplicationFields"
+    uris: "{{ workflow_handler_service_prefix }}/userWFApplicationFields"
     upstream_url: "{{ workflow_handler_service_url }}/v1/workflow/getUserWFApplicationFields"
     strip_uri: true
     plugins:
