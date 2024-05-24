@@ -49,7 +49,7 @@
     - name: install setfacl support
       become: yes
       apt:
-        name: ['acl', 'python-psycopg2']
+        name: ['acl', 'python3-psycopg2']
   roles:
     - postgresql
   tags:
