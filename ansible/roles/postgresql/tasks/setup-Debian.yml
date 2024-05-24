@@ -4,6 +4,16 @@
     name: "{{ postgresql_python_library }}"
     state: present
 
+- name: debian | Adding Postgres Debian Repo Key
+  apt_key:
+    url: "{{ postgres_repo_key }}"
+    state: "present"
+
+- name: debian | Adding postgres Debian Repo
+  apt_repository:
+    repo: "{{ postgres_repo }}"
+    state: "present"
+
 - name: Ensure PostgreSQL packages are installed.
   apt:
     name: "{{ postgresql_packages }}"
