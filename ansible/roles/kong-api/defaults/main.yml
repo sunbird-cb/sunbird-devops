@@ -13332,8 +13332,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: interestCreate
-    uris: "{{ interest_prefix }}/create"
-    upstream_url: "{{ cb_pores_service_url }}/interest/create"
+    uris: "{{ interest_prefix }}/v1/create"
+    upstream_url: "{{ cb_pores_service_url }}/interest/v1/create"
     strip_uri: true
     plugins:
       - name: jwt
@@ -13350,8 +13350,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: interestRead
-    uris: "{{ interest_prefix }}/read"
-    upstream_url: "{{ cb_pores_service_url }}/interest/read"
+    uris: "{{ interest_prefix }}/v1/read"
+    upstream_url: "{{ cb_pores_service_url }}/interest/v1/read"
     strip_uri: true
     plugins:
       - name: jwt
@@ -13368,8 +13368,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: interestSearch
-    uris: "{{ interest_prefix }}/search"
-    upstream_url: "{{ cb_pores_service_url }}/interest/search"
+    uris: "{{ interest_prefix }}/v1/search"
+    upstream_url: "{{ cb_pores_service_url }}/interest/v1/search"
     strip_uri: true
     plugins:
       - name: jwt
@@ -13386,8 +13386,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: interestAssign
-    uris: "{{ interest_prefix }}/assign"
-    upstream_url: "{{ cb_pores_service_url }}/interest/assign"
+    uris: "{{ interest_prefix }}/v1/assign"
+    upstream_url: "{{ cb_pores_service_url }}/interest/v1/assign"
     strip_uri: true
     plugins:
       - name: jwt
