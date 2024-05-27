@@ -13239,3 +13239,93 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playerGetAssessmentResultV5
+    uris: "{{ user_service_prefix }}/assessment/v5/result"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/assessment/result"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ large_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: retakeAssessmentV5
+    uris: "{{ user_service_prefix }}/assessment/v5/retake"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/assessment/retake"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: assessmentSubmitV5
+    uris: "/v5/user/assessment/submit"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/user/assessment/submit"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataCreate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ x_large_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playerQuestionListV5
+    uris: "{{ player_prefix }}/question/v5/list"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/question/list"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ large_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playerQuSetReadHierarchyV5
+    uris: "{{ player_prefix }}/questionset/v5/hierarchy"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/assessment/read"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ large_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
