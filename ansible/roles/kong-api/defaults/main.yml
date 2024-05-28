@@ -13404,8 +13404,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: updateDemandStatus
-    uris: "{{ demand_prefix }}/content/update/status"
-    upstream_url: "{{ cb_pores_service_url }}/demand/update/status"
+    uris: "{{ demand_prefix }}/content/v1/update/status"
+    upstream_url: "{{ cb_pores_service_url }}/demand/v1/update/status"
     strip_uri: true
     plugins:
       - name: jwt
