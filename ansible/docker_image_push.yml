@@ -12,7 +12,7 @@
         registry: "{{ vault_docker_registry_url }}"
         username: "{{ vault_docker_registry_user }}"
         password: "{{ vault_docker_registry_password }}"
-      tags: azure
+      when: cloud_provider == 'azure'
     - block:
         - name: Write GCR service account key to a temporary file
           copy:
@@ -28,7 +28,7 @@
           file:
             path: "{{ service_account_local_path}}"
             state: absent
-      tags: gcp
+      when: cloud_provider == 'gcloud'
 
     - block:
         - name: Push image to registry
