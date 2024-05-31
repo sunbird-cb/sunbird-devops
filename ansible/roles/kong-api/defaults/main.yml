@@ -13531,7 +13531,7 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
- - name: playListV2Search
+  - name: playListV2Search
     uris: "{{ playlist_prefix }}/v2/search"
     upstream_url: "{{ cb_pores_service_url }}/playList/v2/search"
     strip_uri: true
