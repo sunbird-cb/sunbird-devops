@@ -13728,3 +13728,45 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: exploreCourseCreate
+    uris: "{{ course_service_prefix }}/course/v1/explore/upsert"
+    upstream_url: "{{ sb_cb_ext_service_url }}/course/v1/explore/upsert"
+    strip_uri: true
+    plugins:
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: exploreCourseDelete
+    uris: "{{ course_service_prefix }}/course/v1/explore/delete"
+    upstream_url: "{{ sb_cb_ext_service_url }}/course/v1/explore/delete"
+    strip_uri: true
+    plugins:
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: getCompetencyByOrg
+    uris: "/searchBy/competenciesByOrg"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v1/competenciesByOrg"
+    strip_uri: true
+    plugins:
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
