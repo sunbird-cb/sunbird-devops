@@ -165,7 +165,7 @@ ml_survey_private_url: "http://{{private_ingressgateway_ip}}/ml-survey"
 ml_core_private_url:  "http://{{private_ingressgateway_ip}}/ml-core"
 cb_pores_service_url : "http://cb-pores-service:7001"
 cios_content_service_url : "http://cios-content-service:7001"
-mentoring_service_url: "http://cb-pores-service:7101/mentoring"
+mentoring_service_url: "http://mentoring-interface-service:3567"
 
 premium_consumer_rate_limits:
   - api: createContent
