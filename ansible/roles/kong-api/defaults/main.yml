@@ -14227,7 +14227,7 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
   
-    - name: sessionCreate
+  - name: sessionCreate
     uris: "{{ mentoring_prefix }}/v1/sessions/update"
     upstream_url: "{{ mentoring_service_url }}/mentoring/v1/sessions/update"
     strip_uri: true
