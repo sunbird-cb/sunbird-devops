@@ -120,6 +120,9 @@ playlist_prefix: /playList
 interest_prefix: /interest
 orgBookmark_prefix: /orgBookmark
 announcement_prefix: /announcements
+cios_prefix: /cios
+ciosIntegration_prefix: /ciosIntegration
+tenders_prefix: /tenders
 
 # Service URLs
 knowledge_mw_service_url: "http://knowledge-mw-service:5000"
@@ -159,6 +162,7 @@ ml_core_service_url: "http://ml-core-service:3000"
 ml_survey_private_url: "http://{{private_ingressgateway_ip}}/ml-survey"
 ml_core_private_url:  "http://{{private_ingressgateway_ip}}/ml-core"
 cb_pores_service_url : "http://cb-pores-service:7001"
+cios_content_service_url : "http://cios-content-service:7001"
 
 premium_consumer_rate_limits:
   - api: createContent
@@ -13657,7 +13661,262 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-  - name: CBUserBulkUploadV2
+
+ 
+
+  - name: assessmentSavePointV5
+    uris: "/assessment/savepoint"
+    upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/assessment/savepoint"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'dataAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playListV2Create
+    uris: "{{ playlist_prefix }}/v2/create"
+    upstream_url: "{{ cb_pores_service_url }}/playList/v2/create"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentCreate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playListV2Update
+    uris: "{{ playlist_prefix }}/v2/update"
+    upstream_url: "{{ cb_pores_service_url }}/playList/v2/update"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentUpdate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: playListV2Read
+    uris: "{{ playlist_prefix }}/v2/read"
+    upstream_url: "{{ cb_pores_service_url }}/playList/v2/read"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+        
+  - name: ciosOnBoard
+    uris: "{{ cios_prefix }}/v1/onboardContent"
+    upstream_url: "{{ cb_pores_service_url }}/cios/v1/onboardContent"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentUpdate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: ciosRead
+    uris: "{{ cios_prefix }}/v1/content/read"
+    upstream_url: "{{ cb_pores_service_url }}/cios/v1/content/read"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentUpdate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+        
+  - name: ciosSearch
+    uris: "{{ cios_prefix }}/v1/search/content"
+    upstream_url: "{{ cb_pores_service_url }}/cios/v1/search/content"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentUpdate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+        
+  - name: ciosDelete
+    uris: "{{ cios_prefix }}/v1/content/delete"
+    upstream_url: "{{ cb_pores_service_url }}/cios/v1/content/delete"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentUpdate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}" 
+
+  - name: ciosLoadExcel
+    uris: "{{ ciosIntegration_prefix }}/v1/loadContentFromExcel"
+    upstream_url: "{{ cios_content_service_url }}/ciosIntegration/v1/loadContentFromExcel"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: ciosReadContent
+    uris: "{{ ciosIntegration_prefix }}/v1/readAllContentFromDb"
+    upstream_url: "{{ cios_content_service_url }}/ciosIntegration/v1/readAllContentFromDb"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"        
+
+  - name: createTendersEvent
+    uris: "{{ tenders_prefix }}/v4/create"
+    upstream_url: "{{ content_service_url }}/event/v4/create"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentCreate'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: readTendersEvent
+    uris: "{{ tenders_prefix }}/v4/read"
+    upstream_url: "{{ content_service_url }}/event/v4/read"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: updateTendersEvent
+    uris: "{{ tenders_prefix }}/v4/update"
+    upstream_url: "{{ content_service_url }}/event/v4/update"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: publishTendersEvent
+    uris: "{{ tenders_prefix }}/v4/publish"
+    upstream_url: "{{ content_service_url }}/event/v4/publish"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: CBBulkUserUploadV2
     uris: "{{ user_service_prefix }}/v2/bulkupload"
     upstream_url: "{{ sb_cb_ext_service_url }}/user/v2/bulkupload"
     strip_uri: true
