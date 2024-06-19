@@ -13661,9 +13661,6 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-
- 
-
   - name: assessmentSavePointV5
     uris: "/assessment/savepoint"
     upstream_url: "{{ sb_cb_ext_service_url }}/v5/quml/assessment/savepoint"
