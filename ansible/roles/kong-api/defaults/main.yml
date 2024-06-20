@@ -14199,7 +14199,7 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-  - name: mentorProfileDetails
+  - name: mentorProfileDetailsv1
     uris: "{{ mentoring_prefix }}/v1/mentors/details"
     upstream_url: "{{ mentoring_service_url }}/mentoring/v1/mentors/details"
     strip_uri: true
