@@ -13971,7 +13971,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: profileDetails
-    uris: "{{ mentoring_user_prefix }}/v1/user/read/"
+    uris: "{{ mentoring_prefix }}/v1/user/read/"
     upstream_url: "{{ mentoring_service_url }}/user/v1/user/read/"
     strip_uri: true
     plugins:
@@ -14016,7 +14016,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: fileCloudUpload
-    uris: "{{ mentoring_user_prefix }}/v1/cloud-services/file/upload"
+    uris: "{{ mentoring_prefix }}/v1/cloud-services/file/upload"
     upstream_url: "{{ mentoring_service_url }}/user/v1/cloud-services/file/upload"
     strip_uri: true
     plugins:
@@ -14061,7 +14061,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: getSignedUrl
-    uris: "{{ mentoring_user_prefix }}/v1/cloud-services/file"
+    uris: "{{ mentoring_prefix }}/v1/cloud-services/file"
     upstream_url: "{{ mentoring_service_url }}/user/v1/cloud-services/file"
     strip_uri: true
     plugins:
@@ -14414,7 +14414,7 @@ kong_apis:
 
     
   - name: entityTypeRead
-    uris: "{{ mentoring_interface_prefix }}/v1/entity-type/read"
+    uris: "{{ mentoring_prefix }}/v1/entity-type/read"
     upstream_url: "{{ mentoring_service_url }}/interface/v1/entity-type/read"
     strip_uri: true
     plugins:
@@ -14445,7 +14445,7 @@ kong_apis:
     
 
   - name: listOfOrgRoles
-    uris: "{{ mentoring_user_prefix }}/v1/user-role/list"
+    uris: "{{ mentoring_prefix }}/v1/user-role/list"
     upstream_url: "{{ mentoring_service_url }}/user/v1/user-role/list"
     strip_uri: true
     plugins:
