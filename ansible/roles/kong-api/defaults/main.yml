@@ -123,7 +123,7 @@ announcement_prefix: /announcements
 cios_prefix: /cios
 ciosIntegration_prefix: /ciosIntegration
 tenders_prefix: /tenders
-mentoring_prefix : private/mentoring
+mentoring_prefix : /private/mentoring
 
 
 # Service URLs
