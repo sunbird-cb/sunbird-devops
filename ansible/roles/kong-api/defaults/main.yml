@@ -14077,7 +14077,7 @@ kong_apis:
 
 
   - name: uploadFile
-    uris: "{{ mentoring_prefix }}//v1/cloud-services/getSignedUrl"
+    uris: "{{ mentoring_prefix }}/v1/cloud-services/getSignedUrl"
     upstream_url: "{{ mentoring_service_url }}/mentoring/v1/cloud-services/getSignedUrl"
     strip_uri: true
     plugins:
