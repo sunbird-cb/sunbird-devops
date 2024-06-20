@@ -124,6 +124,8 @@ cios_prefix: /cios
 ciosIntegration_prefix: /ciosIntegration
 tenders_prefix: /tenders
 mentoring_prefix : /private/mentoring
+mentoring_user_prefix : /private/mentoringUser
+mentoring_interface_prefix : /private/mentoringInterface
 
 
 # Service URLs
@@ -13971,7 +13973,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: profileDetails
-    uris: "{{ mentoring_prefix }}/v1/user/read/"
+    uris: "{{ mentoring_user_prefix }}/v1/user/read/"
     upstream_url: "{{ mentoring_service_url }}/user/v1/user/read/"
     strip_uri: true
     plugins:
@@ -14016,7 +14018,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: fileCloudUpload
-    uris: "{{ mentoring_prefix }}/v1/cloud-services/file/upload"
+    uris: "{{ mentoring_user_prefix }}/v1/cloud-services/file/upload"
     upstream_url: "{{ mentoring_service_url }}/user/v1/cloud-services/file/upload"
     strip_uri: true
     plugins:
@@ -14061,7 +14063,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: getSignedUrl
-    uris: "{{ mentoring_prefix }}/v1/cloud-services/file"
+    uris: "{{ mentoring_user_prefix }}/v1/cloud-services/file"
     upstream_url: "{{ mentoring_service_url }}/user/v1/cloud-services/file"
     strip_uri: true
     plugins:
@@ -14414,7 +14416,7 @@ kong_apis:
 
     
   - name: entityTypeRead
-    uris: "{{ mentoring_prefix }}/v1/entity-type/read"
+    uris: "{{ mentoring_interface_prefix }}/v1/entity-type/read"
     upstream_url: "{{ mentoring_service_url }}/interface/v1/entity-type/read"
     strip_uri: true
     plugins:
@@ -14445,7 +14447,7 @@ kong_apis:
     
 
   - name: listOfOrgRoles
-    uris: "{{ mentoring_prefix }}/v1/user-role/list"
+    uris: "{{ mentoring_user_prefix }}/v1/user-role/list"
     upstream_url: "{{ mentoring_service_url }}/user/v1/user-role/list"
     strip_uri: true
     plugins:
@@ -14536,7 +14538,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: entityTypeCreateUser
-    uris: "{{ mentoring_prefix }}/v1/entity-type/create"
+    uris: "{{ mentoring_user_prefix }}/v1/entity-type/create"
     upstream_url: "{{ mentoring_service_url }}/user/v1/entity-type/create"
     strip_uri: true
     plugins:
@@ -14552,7 +14554,7 @@ kong_apis:
 
 
   - name: entityTypeUpdateUser
-    uris: "{{ mentoring_prefix }}/v1/entity-type/update"
+    uris: "{{ mentoring_user_prefix }}/v1/entity-type/update"
     upstream_url: "{{ mentoring_service_url }}/user/v1/entity-type/create"
     strip_uri: true
     plugins:
@@ -14657,7 +14659,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: createUserServiceForm
-    uris: "{{ mentoring_prefix }}/v1/form/create"
+    uris: "{{ mentoring_user_prefix }}/v1/form/create"
     upstream_url: "{{ mentoring_service_url }}/user/v1/form/create"
     strip_uri: true
     plugins:
@@ -14688,7 +14690,7 @@ kong_apis:
 
 
   - name: updateUserServiceForm
-    uris: "{{ mentoring_prefix }}/v1/form/update"
+    uris: "{{ mentoring_user_prefix }}/v1/form/update"
     upstream_url: "{{ mentoring_service_url }}/user/v1/form/update"
     strip_uri: true
     plugins:
@@ -14718,7 +14720,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: adminAccountCreate
-    uris: "{{ mentoring_prefix }}/v1/admin/create"
+    uris: "{{ mentoring_user_prefix }}/v1/admin/create"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/create"
     strip_uri: true
     plugins:
@@ -14733,7 +14735,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: adminAccountLogin
-    uris: "{{ mentoring_prefix }}/v1/admin/login"
+    uris: "{{ mentoring_user_prefix }}/v1/admin/login"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/login"
     strip_uri: true
     plugins:
@@ -14749,7 +14751,7 @@ kong_apis:
 
 
   - name: addOrgAdmin
-    uris: "{{ mentoring_prefix }}/v1/admin/addOrgAdmin"
+    uris: "{{ mentoring_user_prefix }}/v1/admin/addOrgAdmin"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/addOrgAdmin"
     strip_uri: true
     plugins:
@@ -14764,7 +14766,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: deactivateOrg
-    uris: "{{ mentoring_prefix }}/v1/admin/deactivateOrg"
+    uris: "{{ mentoring_user_prefix }}/v1/admin/deactivateOrg"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/deactivateOrg"
     strip_uri: true
     plugins:
@@ -14780,7 +14782,7 @@ kong_apis:
 
 
   - name: orgCreate
-    uris: "{{ mentoring_prefix }}/v1/organization/create"
+    uris: "{{ mentoring_user_prefix }}/v1/organization/create"
     upstream_url: "{{ mentoring_service_url }}/user/v1/organization/create"
     strip_uri: true
     plugins:
@@ -14795,7 +14797,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: updateOrg
-    uris: "{{ mentoring_prefix }}/v1/organization/update"
+    uris: "{{ mentoring_user_prefix }}/v1/organization/update"
     upstream_url: "{{ mentoring_service_url }}/user/v1/organization/update"
     strip_uri: true
     plugins:
@@ -14810,7 +14812,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: orgList
-    uris: "{{ mentoring_prefix }}/v1/organization/list"
+    uris: "{{ mentoring_user_prefix }}/v1/organization/list"
     upstream_url: "{{ mentoring_service_url }}/user/v1/organization/list"
     strip_uri: true
     plugins:
@@ -14825,7 +14827,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: requestOrgRole
-    uris: "{{ mentoring_prefix }}/v1/organization/requestOrgRole"
+    uris: "{{ mentoring_user_prefix }}/v1/organization/requestOrgRole"
     upstream_url: "{{ mentoring_service_url }}/user/v1/organization/requestOrgRole"
     strip_uri: true
     plugins:
@@ -14870,8 +14872,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
 
-  - name:  buildorrebuildMaterializedviewsUser
-    uris: "{{ mentoring_prefix }}/v1/admin/triggerViewRebuildInternal"
+  - name:  buildorrebuildMaterializedviewsUserInternal
+    uris: "{{ mentoring_user_prefix }}/v1/admin/triggerViewRebuildInternal"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/triggerViewRebuildInternal"
     strip_uri: true
     plugins:
@@ -14886,7 +14888,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
   
   - name:  buildorrebuildMaterializedviewsUser
-    uris: "{{ mentoring_prefix }}/v1/admin/triggerViewRebuild"
+    uris: "{{ mentoring_user_prefix }}/v1/admin/triggerViewRebuild"
     upstream_url: "{{ mentoring_service_url }}/user/v1/admin/triggerViewRebuild"
     strip_uri: true
     plugins:
@@ -14901,7 +14903,7 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name:  deleteEnityUser
-    uris: "{{ mentoring_prefix }}/v1/entity-type/delete"
+    uris: "{{ mentoring_user_prefix }}/v1/entity-type/delete"
     upstream_url: "{{ mentoring_service_url }}/user/v1/entity-type/delete"
     strip_uri: true
     plugins:
