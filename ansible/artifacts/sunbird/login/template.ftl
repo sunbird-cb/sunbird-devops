@@ -1,7 +1,6 @@
 <#macro registrationLayout bodyClass="" displayInfo=false displayMessage=true>
 <!DOCTYPE html>
-<html class="${properties.kcHtmlClass!}">
-<html lang="en">
+<html class="${properties.kcHtmlClass!}" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,9 +8,11 @@
     <meta http-equiv="cache-control" content="max-age=0" />
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Cache-Control" content="must-revalidate, post-check=0, pre-check=0" />
     <meta http-equiv="pragma" content="no-cache" />
     <meta name="last-modified" content="2019-01-17 15:30:17 +0530">
-    <meta http-equiv="Expires" content="600" />
+    <meta http-equiv="Expires" content="5" />
+    <meta http-equiv="Cache-Control" content="must-revalidate, post-check=0, pre-check=0" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <#if properties.meta?has_content>
         <#list properties.meta?split(' ') as meta>
@@ -38,8 +39,7 @@
 </head>
 
 <body class="${properties.kcBodyClass!}">
-    <main>
-    <div id="kc-logo"><a href="${properties.kcLogoLink!'#'}" title="kc-logo-wrapper"><div id="kc-logo-wrapper"></div><span class="hide">kc-logo</span></a></div>
+    <div id="kc-logo"><a href="${properties.kcLogoLink!'#'}"><div id="kc-logo-wrapper"></div></a></div>
 
     <div id="kc-container" class="${properties.kcContainerClass!}">
         <div id="kc-container-wrapper" class="${properties.kcContainerWrapperClass!}">
@@ -88,21 +88,15 @@
                         if(sessionTenant){
                             var imgSrc = "${url.resourcesPath}/img/tenants/"+sessionTenant+".png";
                         }else{
-                            var imgSrc = "${url.resourcesPath}/img/logo.png";
+                            var imgSrc = "${url.resourcesPath}/img/iGOT_Karmayogi_logo.jpg";
                         }
 
                         var logoImg =  document.querySelector(".ui.header img");
                         if(logoImg){
                             logoImg.setAttribute('class','logo-image');
-                            if(sessionTenant) {
-                                var logoname = sessionTenant + 'logo';
-                                logoImg.setAttribute('alt',logoname);
-                            } else {
-                                var logoname = 'Sunbird logo';
-                                logoImg.setAttribute('alt',logoname);
-                            }
+                            logoImg.setAttribute('alt',sessionTenant);
                             logoImg.src = imgSrc;
-                            logoImg.addEventListener("error", ()=>{ logoImg.onerror=null;logoImg.src='${url.resourcesPath}/img/logo.png'});
+                            logoImg.addEventListener("error", ()=>{ logoImg.onerror=null;logoImg.src='${url.resourcesPath}/img/iGOT_Karmayogi_logo.jpg'});
                         }
 
                     </script>
@@ -117,7 +111,6 @@
             </div>
         </div>
     </div>
-    </main>
 </body>
 </html>
 </#macro>

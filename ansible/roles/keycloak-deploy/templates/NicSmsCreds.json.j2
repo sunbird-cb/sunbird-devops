@@ -1,0 +1,23 @@
+{
+  "gatewayUrl": "{{ smsgatewayurl }}",
+  "signature": "{{ smssign }}",
+  "country": "{{ smscountrycode }}",
+  "messageTypes": [
+    {
+      "username": "{{ smsusername }}",
+      "password": "{{ smspassword }}",
+      "name":"{{ smsname }}",
+      "message": "{{ smsmessage }}",
+      "dlt_entity_id": "{{ smsentityid }}",
+      "dlt_template_id": "{{ smstemplateid }}"
+    },
+    {
+      "username": "{{ smsotpusername }}",
+      "password": "{{ smsotppassword }}",
+      "name": "{{ smsotpname }}",
+      "message": "{{ smsotpmessage }}",
+      "dlt_entity_id": "{{ smsotpentityid }}",
+      "dlt_template_id": "{{ smsotptemplateid }}"
+    }
+  ]
+}
