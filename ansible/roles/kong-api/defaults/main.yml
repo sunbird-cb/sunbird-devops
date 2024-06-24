@@ -15316,3 +15316,41 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: externalMentoringCreate
+    uris: "{{ mentoring_interface_prefix }}/v1/external/create"
+    upstream_url: "{{ mentoring_service_url }}/interface/v1/external/create"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'mentee'  
+          - 'mentor'     
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: externalMentoringUpdate
+    uris: "{{ mentoring_interface_prefix }}/v1/external/update"
+    upstream_url: "{{ mentoring_service_url }}/interface/v1/external/update"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'mentee'  
+          - 'mentor'     
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
