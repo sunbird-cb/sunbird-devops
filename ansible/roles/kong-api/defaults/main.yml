@@ -13982,8 +13982,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14001,8 +14001,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14020,8 +14020,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14039,7 +14039,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'     
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14057,8 +14057,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14076,8 +14076,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14095,8 +14095,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14115,8 +14115,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14134,8 +14134,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14153,9 +14153,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14173,7 +14173,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14192,8 +14192,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14211,9 +14211,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14231,9 +14231,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14251,8 +14251,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14270,8 +14270,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14289,10 +14289,10 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14310,8 +14310,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14330,9 +14330,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14350,8 +14350,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14369,8 +14369,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14389,7 +14389,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
+          - 'mentorServiceMentee'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14408,7 +14408,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
+          - 'mentorServiceMentee'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14426,8 +14426,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'   
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'   
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14446,8 +14446,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor' 
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor' 
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14465,7 +14465,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
+          - 'mentorServiceMentor'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14483,7 +14483,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'      
+          - 'mentorServiceMentee'      
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14501,10 +14501,10 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14523,10 +14523,10 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14545,8 +14545,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14564,9 +14564,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'     
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14585,8 +14585,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14604,8 +14604,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
-          - 'oragnisationAdmin'     
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14623,8 +14623,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'   
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'   
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14643,8 +14643,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'    
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'    
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14662,9 +14662,9 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'     
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14682,8 +14682,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14701,8 +14701,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14721,8 +14721,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14740,8 +14740,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14759,8 +14759,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'     
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14778,10 +14778,10 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'
-          - 'mentor'
-          - 'oragnisationAdmin'  
-          - 'systemAdmin'          
+          - 'mentorServiceMentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceOrgAdmin'  
+          - 'mentorServiceSysAdmin'          
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14799,7 +14799,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14817,7 +14817,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14835,7 +14835,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14853,7 +14853,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14871,7 +14871,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14890,7 +14890,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14908,7 +14908,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14926,7 +14926,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14944,7 +14944,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14963,7 +14963,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -14981,7 +14981,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15000,7 +15000,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15018,7 +15018,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15036,8 +15036,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentor'
-          - 'mentee'
+          - 'mentorServiceMentor'
+          - 'mentorServiceMentee'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15055,7 +15055,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15073,7 +15073,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15091,7 +15091,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15110,7 +15110,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15128,7 +15128,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15146,7 +15146,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15164,7 +15164,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'organisationAdmin'
+          - 'mentorServiceOrgAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15182,7 +15182,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15200,7 +15200,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15218,7 +15218,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15236,7 +15236,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15255,7 +15255,7 @@ kong_apis:
         - "{{ statsd_pulgin }}"
         - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
         - name: rate-limiting
           config.policy: local
           config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15273,7 +15273,7 @@ kong_apis:
         - "{{ statsd_pulgin }}"
         - name: acl
         config.whitelist:
-          - 'systemAdmin'
+          - 'mentorServiceSysAdmin'
         - name: rate-limiting
           config.policy: local
           config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15327,8 +15327,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'  
-          - 'mentor'     
+          - 'mentorServiceMentee'  
+          - 'mentorServiceMentor'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15346,8 +15346,8 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentee'  
-          - 'mentor'     
+          - 'mentorServiceMentee'  
+          - 'mentorServiceMentor'     
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
