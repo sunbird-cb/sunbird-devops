@@ -55,6 +55,21 @@ mobile_device_groups:
   - solutionAccess
   - surveyAccess
   - surveyUpdate
+  - frameworkAdmin
+  - frameworkCreate
+  - userSuperAdmin
+  - orgUpdatecontent 
+  - SuperAdmin
+  - orgSuperAdmin
+  - orgAdmin
+  - dataAccess
+  - dataCreate
+  - contentAdmin
+  - contentTempAccess
+  - pluginAccess
+  - channelAdmin
+  - noteAccess
+  - userTempAdmin
 
 anonymous_user_groups:
   - deviceCreate
@@ -150,6 +165,19 @@ kong_all_consumer_groups:
   - readNotificationFeed
   - updateNotificationFeed
   - deleteNotificationFeed
+  - frameworkAdmin
+  - frameworkCreate
+  - userSuperAdmin
+  - orgUpdatecontent 
+  - SuperAdmin
+  - orgSuperAdmin
+  - orgAdmin
+  - registryUpdate
+  - frameworkUpdate
+  - programsUpdate
+  - programsAccess
+  - solutionsUpdate
+  - dbAccess
 
 kong_consumers:
   - username: api-admin
@@ -177,12 +205,12 @@ kong_consumers:
   - username: portal_anonymous
     groups: "{{ anonymous_user_groups }}"
     state: present
-  - username: portal_loggedin
-    groups: "{{ kong_all_consumer_groups }}"
-    state: present
-  - username: portal_anonymous_fallback_token
-    groups: "{{ anonymous_user_groups }}"
-    state: present
-  - username: portal_loggedin_fallback_token
-    groups: "{{ kong_all_consumer_groups }}"
-    state: present
+ # - username: portal_loggedin
+ #   groups: "{{ kong_all_consumer_groups }}"
+ #   state: present
+ # - username: portal_anonymous_fallback_token
+ #   groups: "{{ anonymous_user_groups }}"
+ #   state: present
+ # - username: portal_loggedin_fallback_token
+ #   groups: "{{ kong_all_consumer_groups }}"
+ #   state: present

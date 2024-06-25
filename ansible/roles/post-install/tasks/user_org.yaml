@@ -58,11 +58,6 @@
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
             },
             {
-              "role": "REPORT_ADMIN",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
               "role": "CONTENT_REVIEWER",
               "operation":"add",
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
@@ -83,11 +78,6 @@
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
             },
             {
-              "role": "ORG_MANAGEMENT",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
               "role": "TEACHER_BADGE_ISSUER",
               "operation":"add",
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
@@ -98,22 +88,7 @@
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
             },
             {
-              "role": "CONTENT_CURATION",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
-              "role": "SYSTEM_ADMINISTRATION",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
               "role": "ANNOUNCEMENT_SENDER",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
-              "role": "PROGRAM_MANAGER",
               "operation":"add",
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
             },
@@ -124,21 +99,6 @@
             },
             {
               "role": "FLAG_REVIEWER",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
-              "role": "CONTENT_REVIEW",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
-              "role": "CONTENT_CREATION",
-              "operation":"add",
-              "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
-            },
-            {
-              "role": "MEMBERSHIP_MANAGEMENT",
               "operation":"add",
               "scope": [{ "organisationId": "{{ sunbird_custodian_org_id }}" }]
             },

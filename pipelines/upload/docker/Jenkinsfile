@@ -1,5 +1,5 @@
 @Library('deploy-conf') _
-node(){
+node('build-slave'){
     try {
         stage('checkout public repo') {
             folder = new File("$WORKSPACE/.git")
@@ -37,7 +37,7 @@ node(){
         throw err
     }
     finally {
-        slack_notify(currentBuild.result)
-        email_notify()
+      //  slack_notify(currentBuild.result)
+       // email_notify()
     }
 }

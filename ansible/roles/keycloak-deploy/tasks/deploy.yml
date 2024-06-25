@@ -18,6 +18,9 @@
     regexp: "{{ item.var }}.*"
   with_items:
     - {var: 'sunbird_user_service_base_url', value: '{{ sunbird_user_service_base_url }}'}
+    - {var: 'sunbird_authorization', value: '{{ core_vault_sunbird_ekstep_api_key }}'}
+    - {var: 'sunbird_lms_base_url', value: 'https://{{ static_domain_name }}/api'}
+    - {var: 'sunbird_login_otp_template', value: 'loginWithOTP'}
 
 - name: Remove old ENV Vars from environemt file
   lineinfile:
@@ -26,8 +29,6 @@
     regexp: "{{ item.var }}.*"
     state: absent
   with_items:
-    - {var: 'sunbird_lms_base_url'}
-    - {var: 'sunbird_authorization'}
     - {var: 'sunbird_encryption_key'}
     - {var: 'sunbird_sso_username'}
     - {var: 'sunbird_sso_password'}
@@ -137,6 +138,15 @@
   when: "{{ msg_91_required|default(false) }}"
   ignore_errors: true
 
+- name: NIC SMS provider configuration file
+  template:
+    src: "roles/keycloak-deploy/templates/NicSmsCreds.json.j2"
+    dest: "sunbird_auth_{{ sunbird_auth_version }}.config/NicSmsCreds.json"
+    mode: 0755
+  when: "{{ msg_91_required|default(false) }}"
+  ignore_errors: true
+
+
 - name: Keycloak configuration XML file
   copy:
     src: "sunbird_auth_{{ sunbird_auth_version }}.config/standalone-ha.xml"
@@ -182,6 +192,19 @@
   when: "{{ msg_91_required|default(false) }}"
   ignore_errors: true
 
+
+- name: NIC SMS provider configuration file
+  copy:
+    src: "sunbird_auth_{{ sunbird_auth_version }}.config/NicSmsCreds.json"
+    dest: "{{ keycloak_home }}/bin/sms-provider/NicSmsCreds.json"
+    owner: "{{ wildfly_user }}"
+    group: "{{ wildfly_group }}"
+    mode: 0755
+    remote_src: true
+  when: "{{ msg_91_required|default(false) }}"
+  ignore_errors: true
+
+
 - name: Remove the sunbird_auth_{{ sunbird_auth_version }}.config
   become: true
   file:
@@ -196,6 +219,13 @@
     insertafter: '^SERVER_OPTS=""'
     line: 'JAVA_HOME=""'
     path: "{{ keycloak_home }}/bin/standalone.sh"
+    
+- name: Add trustStore Path
+  become: true
+  lineinfile:
+    path: "{{ keycloak_home }}/bin/standalone.sh"
+    insertafter: "DEFAULT_MODULAR_JVM_OPTIONS"
+    line: '    JAVA_OPTS="-Djavax.net.ssl.trustStore=/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/cacerts -Djavax.net.ssl.trustStorePassword=changeit $JAVA_OPTS"'
 
 - name: start keycloak service
   debug: msg="starting keycloak"
