@@ -14319,7 +14319,6 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-
   - name: sessionList
     uris: "{{ mentoring_prefix }}/v1/sessions/list"
     upstream_url: "{{ mentoring_service_url }}/mentoring/v1/sessions/list"
@@ -14330,9 +14329,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'mentorServiceMentee'
-          - 'mentorServiceMentor'
-          - 'mentorServiceOrgAdmin'
+          - 'contentAccess'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
