@@ -182,6 +182,7 @@ kong_all_consumer_groups:
   - mentorServiceMentor
   - mentorServiceOrgAdmin
   - mentorServiceSysAdmin
+  - userSuperAccess
   
 kong_consumers:
   - username: api-admin
