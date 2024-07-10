@@ -125,6 +125,7 @@ ciosIntegration_prefix: /ciosIntegration
 tenders_prefix: /tenders
 mentoring_prefix : /mentoring
 mentoring_interface_prefix : /interface
+designation_prefix: /designationsUpload
 
 
 # Service URLs
@@ -15807,4 +15808,23 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}" 
+
+  - name: designationMasterBulkUpload
+    uris: "{{ designation_prefix }}/upload"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/upload"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
 
