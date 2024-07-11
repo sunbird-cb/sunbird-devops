@@ -125,7 +125,7 @@ ciosIntegration_prefix: /ciosIntegration
 tenders_prefix: /tenders
 mentoring_prefix : /mentoring
 mentoring_interface_prefix : /interface
-designation_prefix: /designationsUpload
+designation_prefix: /designation
 
 
 # Service URLs
