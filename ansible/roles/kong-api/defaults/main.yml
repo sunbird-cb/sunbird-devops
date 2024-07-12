@@ -126,7 +126,6 @@ tenders_prefix: /tenders
 mentoring_prefix : /mentoring
 mentoring_interface_prefix : /interface
 designation_prefix: /designation
-external_enrollment_prefix: /cios-enroll
 
 
 # Service URLs
@@ -169,7 +168,6 @@ ml_core_private_url:  "http://{{private_ingressgateway_ip}}/ml-core"
 cb_pores_service_url : "http://cb-pores-service:7001"
 cios_content_service_url : "http://cios-content-service:7001"
 mentoring_interface_service_url: "http://mentoring-interface-service:3567"
-cb_external_enrollment_service_url: "http://cb-enrollment-service:7002"
 
 premium_consumer_rate_limits:
   - api: createContent
@@ -15829,9 +15827,9 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-  - name: extEnrollmentCreate
-    uris: "{{ external_enrollment_prefix }}/v1/create"
-    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/create"
+  - name: designationList
+    uris: "{{ designation_prefix }}/search"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/search"
     strip_uri: true
     plugins:
       - name: jwt
@@ -15839,28 +15837,7 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'courseAccess'
-          - 'contentUpdate'
-      - name: rate-limiting
-        config.policy: local
-        config.hour: "{{ large_rate_limit_per_hour }}"
-        config.hour: "{{ medium_rate_limit_per_hour }}"
-        config.limit_by: credential
-      - name: request-size-limiting
-        config.allowed_payload_size: "{{ small_request_size_limit }}"
-        config.allowed_payload_size: "{{ medium_request_size_limit }}"
-
-  - name: extEnrollmentReadByUserId
-    uris: "{{ external_enrollment_prefix }}/v1/listbyuserid"
-    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/listbyuserid"
-    strip_uri: true
-    plugins:
-      - name: jwt
-      - name: cors
-      - "{{ statsd_pulgin }}"
-      - name: acl
-        config.whitelist:
-          - 'contentUpdate'
+          - 'contentAccess'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
@@ -15868,9 +15845,9 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
-  - name: extEnrollmentReadByUserIdAndCourseId
-    uris: "{{ external_enrollment_prefix }}/v1/readby/useridcourseId"
-    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/readby/useridcourseId"
+  - name: designationCreate
+    uris: "{{ designation_prefix }}/create"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/create"
     strip_uri: true
     plugins:
       - name: jwt
@@ -15878,10 +15855,65 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'contentUpdate'
+          - 'contentAccess'
       - name: rate-limiting
         config.policy: local
         config.hour: "{{ medium_rate_limit_per_hour }}"
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: designationUpdate
+    uris: "{{ designation_prefix }}/update"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/update"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: designationDelete
+    uris: "{{ designation_prefix }}/delete"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/delete"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: designationRead
+    uris: "{{ designation_prefix }}/read"
+    upstream_url: "{{ cb_pores_service_url }}/designation_prefix/read"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
