@@ -15899,8 +15899,8 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
- 
-   - name: designationList
+        
+  - name: designationList
     uris: "{{ designation_prefix }}/search"
     upstream_url: "{{ cb_pores_service_url }}/designation/search"
     strip_uri: true
@@ -15910,15 +15910,14 @@ kong_apis:
       - "{{ statsd_pulgin }}"
       - name: acl
         config.whitelist:
-          - 'courseAccess'
+          - 'contentAccess'
       - name: rate-limiting
         config.policy: local
-        config.hour: "{{ large_rate_limit_per_hour }}"
         config.hour: "{{ medium_rate_limit_per_hour }}"
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
- 
+  
   - name: designationCreate
     uris: "{{ designation_prefix }}/create"
     upstream_url: "{{ cb_pores_service_url }}/designation/create"
