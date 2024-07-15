@@ -127,6 +127,9 @@ mentoring_prefix : /mentoring
 mentoring_interface_prefix : /interface
 external_enrollment_prefix: /cios-enroll
 designation_prefix : /designation
+comp_area_prefix : /competencyArea
+comp_theme_prefix : /competencyTheme
+comp_sub_theme_prefix : /competencySubTheme
 
 
 # Service URLs
@@ -16009,3 +16012,113 @@ kong_apis:
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
+  - name: competencyAreaList
+    uris: "{{ comp_area_prefix }}/search"
+    upstream_url: "{{ cb_pores_service_url }}/competencyArea/search"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: competencyAreaUpload
+    uris: "{{ comp_area_prefix }}/upload"
+    upstream_url: "{{ cb_pores_service_url }}/competencyArea/upload"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'orgSuperAdmin'
+          - 'orgAdmin'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: competencyThemeList
+    uris: "{{ comp_theme_prefix }}/search"
+    upstream_url: "{{ cb_pores_service_url }}/competencyTheme/search"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: competencyThemeUpload
+    uris: "{{ comp_theme_prefix }}/upload"
+    upstream_url: "{{ cb_pores_service_url }}/competencyTheme/upload"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'orgSuperAdmin'
+          - 'orgAdmin'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: competencySubThemeList
+    uris: "{{ comp_sub_theme_prefix }}/search"
+    upstream_url: "{{ cb_pores_service_url }}/competencySubTheme/search"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: competencySubThemeUpload
+    uris: "{{ comp_sub_theme_prefix }}/upload"
+    upstream_url: "{{ cb_pores_service_url }}/competencySubTheme/upload"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'orgSuperAdmin'
+          - 'orgAdmin'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"        
