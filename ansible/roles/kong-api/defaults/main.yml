@@ -15868,8 +15868,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: extEnrollmentReadByUserId
-    uris: "{{ external_enrollment_prefix }}/v1/listbyuserid"
-    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/listbyuserid"
+    uris: "{{ external_enrollment_prefix }}/v1/courselist/byuserid"
+    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/courselist/byuserid"
     strip_uri: true
     plugins:
       - name: jwt
@@ -15886,8 +15886,8 @@ kong_apis:
         config.allowed_payload_size: "{{ medium_request_size_limit }}"
 
   - name: extEnrollmentReadByUserIdAndCourseId
-    uris: "{{ external_enrollment_prefix }}/v1/readby/useridcourseId"
-    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/readby/useridcourseId"
+    uris: "{{ external_enrollment_prefix }}/v1/readby/useridcourseid"
+    upstream_url: "{{ cb_external_enrollment_service_url }}/cios-enroll/v1/readby/useridcourseid"
     strip_uri: true
     plugins:
       - name: jwt
