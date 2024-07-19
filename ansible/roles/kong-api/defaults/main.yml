@@ -130,6 +130,7 @@ designation_prefix : /designation
 comp_area_prefix : /competencyArea
 comp_theme_prefix : /competencyTheme
 comp_sub_theme_prefix : /competencySubTheme
+org_prefix : /org
 
 
 # Service URLs
@@ -16414,6 +16415,24 @@ kong_apis:
   - name: competencySubThemeTermCreate
     uris: "{{ comp_sub_theme_prefix }}/create/term"
     upstream_url: "{{ cb_pores_service_url }}/competencySubTheme/term/create"
+    strip_uri: true
+    plugins:
+      - name: jwt
+      - name: cors
+      - "{{ statsd_pulgin }}"
+      - name: acl
+        config.whitelist:
+          - 'contentAccess'
+      - name: rate-limiting
+        config.policy: local
+        config.hour: "{{ medium_rate_limit_per_hour }}"
+        config.limit_by: credential
+      - name: request-size-limiting
+        config.allowed_payload_size: "{{ medium_request_size_limit }}"
+
+  - name: OrgFrameworkRead
+    uris: "{{ org_prefix }}/framework/read"
+    upstream_url: "{{ cb_pores_service_url }}/org/framework/read"
     strip_uri: true
     plugins:
       - name: jwt
