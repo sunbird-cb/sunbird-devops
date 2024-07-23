@@ -178,7 +178,12 @@ kong_all_consumer_groups:
   - programsAccess
   - solutionsUpdate
   - dbAccess
-
+  - mentorServiceMentee
+  - mentorServiceMentor
+  - mentorServiceOrgAdmin
+  - mentorServiceSysAdmin
+  - userSuperAccess
+  
 kong_consumers:
   - username: api-admin
     groups: "{{ kong_all_consumer_groups }}"
