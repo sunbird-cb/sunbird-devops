@@ -15962,3 +15962,95 @@ kong_apis:
         config.limit_by: credential
       - name: request-size-limiting
         config.allowed_payload_size: "{{ medium_request_size_limit }}" 
+
+  - name: surveysampletemplate
+    uris: "{{ surveys_service_prefix }}/template/api/v1/download/sampleTemplate"
+    upstream_url: "{{ ml_survey_service_url }}/template/api/v1/download/sampleTemplate"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+      - surveyAccess
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ x_large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: uploadsurvey
+    uris: "{{ surveys_service_prefix }}/template/api/v1/upload"
+    upstream_url: "{{ ml_survey_service_url }}/template/api/v1/upload"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+      - surveyAccess
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ x_large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: validatesurvey
+    uris: "{{ surveys_service_prefix }}/template/api/v1/validate"
+    upstream_url: "{{ ml_survey_service_url }}/template/api/v1/validate"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+      - surveyAccess
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ x_large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: createsurvey
+    uris: "{{ surveys_service_prefix }}/template/api/v1/survey/create"
+    upstream_url: "{{ ml_survey_service_url }}/template/api/v1/survey/create"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+      - surveyAccess
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ x_large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+  - name: surveygetSolutions
+    uris: "{{ surveys_service_prefix }}/template/api/v1/survey/getSolutions"
+    upstream_url: "{{ ml_survey_service_url }}/template/api/v1/survey/getSolutions"
+    strip_uri: true
+    plugins:
+    - name: jwt
+    - name: cors
+    - "{{ statsd_pulgin }}"
+    - name: acl
+      config.whitelist:
+      - surveyAccess
+    - name: rate-limiting
+      config.policy: local
+      config.hour: "{{ x_large_rate_limit_per_hour }}"
+      config.limit_by: credential
+    - name: request-size-limiting
+      config.allowed_payload_size: "{{ small_request_size_limit }}"
+
+    
