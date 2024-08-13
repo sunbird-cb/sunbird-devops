@@ -323,8 +323,9 @@
     <script type="text/javascript">
         var onloadCallback = function() {
             grecaptcha.render('captcha', {
-            'sitekey' : '6Lcl-CQqAAAAAMEPv0kxyrtYhBVZBXtXygyHNoyX',            
-            'badge' : 'bottomright'
+            'sitekey' : '6LfY0l0gAAAAAAgmOgNn-VEW5jwu_-AyXTTH8gq4',            
+            'badge' : 'bottomright',
+            'size': 'invisible'
             });
         };
         var validateRecaptcha = function() {
