@@ -328,9 +328,11 @@
             });
         };
         var validateRecaptcha = function() {
-            let flag = true
-            if(!document.getElementById("login").disabled) {                
+            let flag = false
+            if(!document.getElementById("login").disabled) {     
+                           
                  grecaptcha.execute();
+                 flag = true
             } 
             
             return flag
