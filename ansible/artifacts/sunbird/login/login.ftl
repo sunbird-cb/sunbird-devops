@@ -323,7 +323,7 @@
     <script type="text/javascript">
         var onloadCallback = function() {
             grecaptcha.render('captcha', {
-            'sitekey' : '6LfY0l0gAAAAAAgmOgNn-VEW5jwu_-AyXTTH8gq4',
+            'sitekey' : '6Lcl-CQqAAAAAMEPv0kxyrtYhBVZBXtXygyHNoyX',            
             'badge' : 'bottomright'
             });
         };
