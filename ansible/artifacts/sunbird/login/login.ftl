@@ -113,10 +113,9 @@
                                         </div>
                                     </#if>
                                     </div>
-                                    <div class="captcha" id="captchaBlock">
-                                        <div id="captcha"></div>
-                                        
-                                    </div>
+                                    <div id="recaptcha" class="g-recaptcha"
+                                    data-sitekey="6LfY0l0gAAAAAAgmOgNn-VEW5jwu_-AyXTTH8gq4"
+                                    data-size="invisible"></div>
                                     <div class="field">
                                         <button id="login" class="ui fluid button">${msg("doLogIn")}</button>
                                     </div>
@@ -329,18 +328,15 @@
             });
         };
         var validateRecaptcha = function() {
-            var v = grecaptcha.getResponse();
-            console.log("Resp" + v);
-            if (v == '') {
-                document.getElementById('captcha').innerHTML = "Invalid Captcha";
-                return false;
-            }
-            else {
-                return true;
-            }
+            let flag = true
+            if(!document.getElementById("login").disabled) {                
+                 grecaptcha.execute();
+            } 
+            
+            return flag
         }
     </script>
-     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+     <script src="https://www.google.com/recaptcha/api.js"
         async defer>
     </script>
     </#if>
